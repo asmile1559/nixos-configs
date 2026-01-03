@@ -10,6 +10,11 @@
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
         usernamehw.errorlens
+        rust-lang.rust-analyzer
+        ms-python.python
+        ms-python.vscode-python-envs
+        ms-python.vscode-pylance
+        ms-python.debugpy
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "KDL";
