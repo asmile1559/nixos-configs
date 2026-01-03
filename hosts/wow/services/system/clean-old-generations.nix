@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  systemd.services.clean-old-generaions = {
-    description = "Clean old nixos genrations per 7 days";
-    script = "/etc/nixos/hosts/system/scripts/clean-old-generaions.sh";
+  systemd.services.clean-old-generations = {
+    description = "Clean old nixos generations per 7 days";
+    script = "./scripts/clean-old-generations.sh";
     serviceConfig = {
         Type = "oneshot";
         User = "root";
+        RemainAfterExit = true;
     };
   };
 

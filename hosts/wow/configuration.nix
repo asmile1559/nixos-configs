@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./system
+      ./services
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
     ];
@@ -136,6 +136,8 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
+
+  fonts.fontDir.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
