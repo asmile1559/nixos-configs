@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./services
+      ./programs/system
       inputs.home-manager.nixosModules.home-manager
       inputs.nixvim.nixosModules.nixvim
     ];
@@ -59,7 +60,7 @@
   ];
   
   # Enable the X11 windowing system.
-  services.xserver.enable = false;
+  services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
