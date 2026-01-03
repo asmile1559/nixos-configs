@@ -104,6 +104,8 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.dub = import ./home.nix;
+
+    backupFileExtension = "backup";
   };
 
   # Install firefox.
