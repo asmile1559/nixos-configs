@@ -12,9 +12,9 @@
         usernamehw.errorlens
         rust-lang.rust-analyzer
         ms-python.python
-        ms-python.vscode-python-envs
-        ms-python.vscode-pylance
         ms-python.debugpy
+        github.github-vscode-theme
+        catppuccin.catppuccin-vsc-icons
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "KDL";
