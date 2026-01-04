@@ -4,6 +4,7 @@
 
   imports = [
     ./programs/home
+    ./configs/home/dconf
   ];
 
   home = {

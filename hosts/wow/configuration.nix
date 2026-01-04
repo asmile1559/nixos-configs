@@ -156,6 +156,11 @@
     clash-verge-rev
     ghostty
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.appindicator
+    gnomeExtensions.kimpanel
+    gnomeExtensions.dash-to-dock
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
