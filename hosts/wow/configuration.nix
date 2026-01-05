@@ -97,6 +97,7 @@
       vscode
     ];
     shell = pkgs.zsh;
+    linger = true;
   };
 
   # home-manager configuration
@@ -161,8 +162,10 @@
     gnomeExtensions.appindicator
     gnomeExtensions.kimpanel
     gnomeExtensions.dash-to-dock
-  ];
 
+    mihomo
+  ];
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -193,6 +196,36 @@
     defaultEditor = true;
     imports = [ ./nixvim.nix ];
   };
+
+
+  # docker
+  virtualisation.docker = {
+  # Consider disabling the system wide Docker daemon
+    enable = false;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+      # Optionally customize rootless Docker daemon settings
+      daemon.settings = {
+        dns = [ "1.1.1.1" "8.8.8.8" ];
+        registry-mirrors = [ "https://mirror.gcr.io" ];
+      };
+    };
+  };
+
+  services.mihomo = {
+    enable = true;
+    configFile = "/home/dub/.config/mihomo/config-full.yaml";
+    tunMode = true;
+    webui = pkgs.metacubexd;
+  };
+
+  networking.firewall = {
+    trustedInterfaces = [
+      "Mihomo"
+    ];
+    checkReversePath = false;
+  }; 
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
