@@ -26,6 +26,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # enable bluetools
+  hardware.bluetooth.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
@@ -94,6 +99,7 @@
     packages = with pkgs; [
       vscode
       zotero
+      wpsoffice-cn
     ];
     shell = pkgs.zsh;
     linger = true;

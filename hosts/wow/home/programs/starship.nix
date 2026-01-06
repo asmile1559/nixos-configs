@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       add_newline = true;
-      format = ''$time$all$character'';
+      format = ''$os$time$all$character'';
       directory = {
         truncation_length = 3;
         truncation_symbol = "../";
@@ -15,10 +15,11 @@
         error_symbol = "[✘ ](bold red)";
       };
       os = {
-        enable = true;
-        symbol = {
+        disabled = false;
+        symbols = {
           NixOS = " ";
         };
+        format = "[$symbol ]($style)";
       };
       time = {
         disabled = false;

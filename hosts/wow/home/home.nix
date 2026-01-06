@@ -4,6 +4,7 @@
 
   imports = [
     inputs.nixvim.homeModules.nixvim
+    inputs.noctalia.homeModules.default
     ./programs
     ./configs/dconf
   ];
