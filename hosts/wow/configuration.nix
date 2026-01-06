@@ -2,16 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./services
-      ./programs/system
-      inputs.home-manager.nixosModules.home-manager
-      inputs.nixvim.nixosModules.nixvim
+      ./system/programs
+      ./system/services
     ];
 
   # Bootloader.
@@ -99,16 +97,7 @@
     ];
     shell = pkgs.zsh;
     linger = true;
-  };
-
-  # home-manager configuration
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.dub = import ./home.nix;
-
-    backupFileExtension = "backup";
-  };
+  };  
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -157,7 +146,6 @@
     google-chrome
     clash-verge-rev
     ghostty
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     gnomeExtensions.blur-my-shell
     gnomeExtensions.appindicator
@@ -173,6 +161,9 @@
     fuzzel
 
     xwayland-satellite
+
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   
   # Some programs need SUID wrappers, can be configured further or are
@@ -198,14 +189,6 @@
   services.flatpak = {
     enable = true;
   };
-
-  # nixvim configruation
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-    imports = [ ./nixvim.nix ];
-  };
-
 
   # docker
   virtualisation.docker = {

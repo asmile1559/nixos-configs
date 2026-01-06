@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
 
   imports = [
-    ./programs/home
-    ./configs/home/dconf
+    inputs.nixvim.homeModules.nixvim
+    ./programs
+    ./configs/dconf
   ];
 
   home = {
@@ -26,7 +27,6 @@
     
   };
 
-  xdg.configFile."niri/config.kdl".source = ./configs/home/niri/config.kdl;
-
+  xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
   home.stateVersion = "25.11";
 }

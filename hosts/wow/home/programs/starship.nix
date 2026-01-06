@@ -11,8 +11,14 @@
         truncation_symbol = "../";
       };
       character = {
-        success_symbol = "[➜](bold green)" ;
-        error_symbol = "[✗](bold red)";
+        success_symbol = "[ ](bold green)" ;
+        error_symbol = "[✘ ](bold red)";
+      };
+      os = {
+        enable = true;
+        symbol = {
+          NixOS = " ";
+        };
       };
       time = {
         disabled = false;
