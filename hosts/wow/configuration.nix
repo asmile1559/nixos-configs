@@ -95,6 +95,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       vscode
+      zotero
     ];
     shell = pkgs.zsh;
     linger = true;
@@ -168,6 +169,8 @@
 
     nixd
     nixfmt
+
+    fuzzel
   ];
   
   # Some programs need SUID wrappers, can be configured further or are
