@@ -19,6 +19,8 @@
         ms-vscode-remote.remote-containers
         ms-vscode-remote.remote-ssh
         ms-vscode.remote-explorer
+        github.copilot
+        github.copilot-chat
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "KDL";
@@ -39,6 +41,16 @@
         "[json]".editor.tabSize = 2;
         workbench.colorTheme = "GitHub Dark";
         workbench.iconTheme = "catppuccin-mocha";
+
+        nix.enableLanguageServer = true;
+        nix.serverPath = [ "nixd" ];
+        nix.serverSettings = {
+          nixd = {
+            formatting = {
+              command = [ "nixfmt" ];
+            };
+          };
+        };
       };
     };
   };

@@ -10,6 +10,7 @@
           "appindicatorsupport@rgcjonas.gmail.com"
           "kimpanel@kde.org"
           "dash-to-dock@micxgx.gmail.com"
+          "caffeine@patapon.info"
         ];
       };
     };

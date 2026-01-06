@@ -162,8 +162,12 @@
     gnomeExtensions.appindicator
     gnomeExtensions.kimpanel
     gnomeExtensions.dash-to-dock
+    gnomeExtensions.caffeine
 
     mihomo
+
+    nixd
+    nixfmt
   ];
   
   # Some programs need SUID wrappers, can be configured further or are
