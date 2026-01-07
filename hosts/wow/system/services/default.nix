@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./system
-    ./user
+    ./clean-old-generations.nix
   ];
 }

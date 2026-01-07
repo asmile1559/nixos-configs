@@ -7,6 +7,7 @@
     inputs.noctalia.homeModules.default
     ./programs
     ./configs/dconf
+    ./services
   ];
 
   home = {
