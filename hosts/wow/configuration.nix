@@ -100,6 +100,7 @@
       vscode
       zotero
       wpsoffice-cn
+      heroic-unwrapped
     ];
     shell = pkgs.zsh;
     linger = true;
