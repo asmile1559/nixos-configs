@@ -7,34 +7,37 @@
     profiles.default = {
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
-      extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        usernamehw.errorlens
-        rust-lang.rust-analyzer
-        ms-python.python
-        ms-python.debugpy
-        github.github-vscode-theme
-        catppuccin.catppuccin-vsc-icons
-        ms-vscode-remote.vscode-remote-extensionpack
-        ms-vscode-remote.remote-containers
-        ms-vscode-remote.remote-ssh
-        ms-vscode.remote-explorer
-        github.copilot
-        github.copilot-chat
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "KDL";
-          publisher = "kdl-org";
-          version = "2.1.3";
-          sha256 = "Jssmb5owrgNWlmLFSKCgqMJKp3sPpOrlEUBwzZSSpbM=";
-        }
-        {
-          name = "remote-server";
-          publisher = "ms-vscode";
-          version = "1.5.3";
-          sha256 = "MSayIBwvSgIHg6gTrtUotHznvo5kTiveN8iSrehllW0=";   
-        }
-      ];
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          jnoortheen.nix-ide
+          usernamehw.errorlens
+          rust-lang.rust-analyzer
+          ms-python.python
+          ms-python.debugpy
+          github.github-vscode-theme
+          catppuccin.catppuccin-vsc-icons
+          ms-vscode-remote.vscode-remote-extensionpack
+          ms-vscode-remote.remote-containers
+          ms-vscode-remote.remote-ssh
+          ms-vscode.remote-explorer
+          github.copilot
+          github.copilot-chat
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "KDL";
+            publisher = "kdl-org";
+            version = "2.1.3";
+            sha256 = "Jssmb5owrgNWlmLFSKCgqMJKp3sPpOrlEUBwzZSSpbM=";
+          }
+          {
+            name = "remote-server";
+            publisher = "ms-vscode";
+            version = "1.5.3";
+            sha256 = "MSayIBwvSgIHg6gTrtUotHznvo5kTiveN8iSrehllW0=";
+          }
+        ];
       userSettings = {
         "[nix]".editor.tabSize = 2;
         "[kdl]".editor.tabSize = 2;

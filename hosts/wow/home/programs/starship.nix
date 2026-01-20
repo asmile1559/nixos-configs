@@ -5,13 +5,13 @@
     enable = true;
     settings = {
       add_newline = true;
-      format = ''$os$time$all$character'';
+      format = "$os$time$all$character";
       directory = {
         truncation_length = 3;
         truncation_symbol = "../";
       };
       character = {
-        success_symbol = "[ ](bold green)" ;
+        success_symbol = "[ ](bold green)";
         error_symbol = "[✘ ](bold red)";
       };
       os = {
