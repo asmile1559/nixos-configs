@@ -1,14 +1,18 @@
 {
   description = "dub's flake setting";
-  
+
   inputs = {
-    nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-unstable&shallow=1";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -21,15 +25,56 @@
     };
   };
 
-  outputs = inputs@{self, nixpkgs, ...}: {
-    nixosConfigurations.wow = nixpkgs.lib.nixosSystem {
-      specialArgs = { 
-      	inherit inputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+
+    in
+    {
+      nixosModules = import ./modules/nixos;
+
+      homeManagerModules = import ./modules/home-manager;
+
+      nixosConfigurations = {
+        wow = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            inputs.nur.modules.nixos.default
+            ./nixos/wow/configuration.nix
+          ];
+        };
+
+        minipc = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            inputs.nur.modules.nixos.default
+            ./nixos/minipc/configuration.nix
+            ./nixos/minipc/nur.nix
+          ];
+        };
       };
-      modules = [
-        ./hosts/wow/configuration.nix
-        ./hosts/wow/home-manager.nix
-      ];
+
+      homeConfigurations = {
+        "dub@wow" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."${system}";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./home-manager/dub-wow/home.nix
+          ];
+        };
+        "box@minipc" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."${system}";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./home-manager/box-minipc/home.nix
+          ];
+        };
+      };
     };
-  };
 }

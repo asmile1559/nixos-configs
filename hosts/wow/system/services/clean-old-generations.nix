@@ -5,9 +5,9 @@
     description = "Clean old nixos generations per 7 days";
     script = "./scripts/clean-old-generations.sh";
     serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-        RemainAfterExit = true;
+      Type = "oneshot";
+      User = "root";
+      RemainAfterExit = true;
     };
   };
 
