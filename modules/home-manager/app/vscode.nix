@@ -23,6 +23,7 @@
           ms-vscode.remote-explorer
           github.copilot
           github.copilot-chat
+          golang.go
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {

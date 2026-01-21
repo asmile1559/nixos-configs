@@ -53,7 +53,6 @@
         minipc = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            inputs.nur.modules.nixos.default
             ./nixos/minipc/configuration.nix
             ./nixos/minipc/nur.nix
           ];

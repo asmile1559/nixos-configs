@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 
@@ -7,6 +8,7 @@
   imports = [
     inputs.self.homeManagerModules
     ./configs/dconf
+    ./app
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -14,7 +16,7 @@
   home.username = "box";
   home.homeDirectory = "/home/box";
   home.shellAliases = {
-    "hsw" = "home-manager switch --flake ~/.config/home-manager#box@minipc -b backup";
+    "hswitch" = "home-manager switch --flake ~/.config/home-manager#box@minipc -b backup";
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -45,6 +47,10 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.zotero
+    pkgs.heroic-unwrapped
+
+    pkgs.yazi
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -79,11 +85,11 @@
   #  /etc/profiles/per-user/box/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "emacs";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
+  
   xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
 }

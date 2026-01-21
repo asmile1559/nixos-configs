@@ -7,5 +7,6 @@
     ./vscode.nix
     ./starship.nix
     ./ghostty.nix
+    ./yazi.nix
   ];
 }
