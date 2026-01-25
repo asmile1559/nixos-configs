@@ -19,6 +19,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +44,8 @@
       nixosModules = import ./modules/nixos;
 
       homeManagerModules = import ./modules/home-manager;
+
+      desktopModules = import ./desktop;
 
       nixosConfigurations = {
         wow = nixpkgs.lib.nixosSystem {

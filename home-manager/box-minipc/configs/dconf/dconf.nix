@@ -13,6 +13,10 @@
           "caffeine@patapon.info"
         ];
       };
+      "org/gnome/desktop/interface" = {
+        cursor-theme = "Bibata-Modern-Ice";
+        cursor-size = 24;
+      };
     };
   };
 }

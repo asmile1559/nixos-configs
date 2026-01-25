@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.self.homeManagerModules
+    inputs.self.desktopModules.niri.home
     ./configs/dconf
     ./app
   ];
@@ -51,6 +52,7 @@
     pkgs.heroic-unwrapped
 
     pkgs.yazi
+    pkgs.bibata-cursors
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -88,8 +90,22 @@
     EDITOR = "emacs";
   };
 
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    package = pkgs.bibata-cursors;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # Fixes OpenURI and cursor theme in flatpaks
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-  xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
+
+  # xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
 }

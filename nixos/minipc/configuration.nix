@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ./app
     inputs.self.nixosModules
+    inputs.self.desktopModules.niri.nixos
   ];
 
   # Bootloader.
@@ -101,7 +102,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
@@ -136,8 +137,6 @@
     nixd
     nixfmt
     home-manager
-
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

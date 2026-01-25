@@ -56,6 +56,8 @@
           };
         };
         editor.fontFamily = "'Maple Mono NL NF CN', 'Fira Code'";
+        files.autoSave = "afterDelay";
+        editor.formatOnSave = true;
       };
     };
   };
