@@ -11,6 +11,10 @@
     pkgs.playerctl
     pkgs.xwayland-satellite
     pkgs.qt6Packages.qt6ct
+    pkgs.swayidle
+
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gnome
   ];
 
   environment.variables = {

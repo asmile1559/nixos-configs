@@ -87,7 +87,7 @@
   #  /etc/profiles/per-user/box/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   home.pointerCursor = {
@@ -101,7 +101,11 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # Fixes OpenURI and cursor theme in flatpaks
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gnome
+    ]; # Fixes OpenURI and cursor theme in flatpaks
   };
 
   # Let Home Manager install and manage itself.

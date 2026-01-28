@@ -8,5 +8,6 @@
     ./starship.nix
     ./ghostty.nix
     ./yazi.nix
+    ./fzf.nix
   ];
 }

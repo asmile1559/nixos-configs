@@ -54,7 +54,10 @@ in
           action.spawn = noctalia "lockScreen lock";
         };
 
-        "Mod+Y".action.spawn = noctalia "launcher clipboard";
+        "Mod+Y" = {
+          hotkey-overlay.title = "Show clipboard";
+          action.spawn = noctalia "launcher clipboard";
+        };
         # Open/close the Overview: a zoomed-out view of workspaces and windows.
         # You can also move the mouse into the top-left hot corner,
         # or do a four-finger swipe up on a touchpad.
@@ -282,7 +285,10 @@ in
         "Print".action.screenshot = { };
         "Ctrl+Print".action.screenshot-screen = { };
         "Alt+Print".action.screenshot-window = { };
-        "Mod+S".action.spawn = screenshot;
+        "Mod+S" = {
+          hotkey-overlay.title = "Take Screenshot";
+          action.spawn = screenshot;
+        };
 
         # Applications such as remote-desktop clients and software KVM switches may
         # request that niri stops processing the keyboard shortcuts defined here
@@ -311,16 +317,19 @@ in
         # "-l 1.0" limits the volume to 100%.
         # for laptop settings
         "XF86AudioRaiseVolume" = {
+          # fn + f11
           allow-when-locked = true;
-          action.spawn = splits "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+          action.spawn = splits "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
         };
 
         "XF86AudioLowerVolume" = {
+          # fn + f12
           allow-when-locked = true;
-          action.spawn = splits "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+          action.spawn = splits "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
         };
 
         "XF86AudioMute" = {
+          # fn + f10
           allow-when-locked = true;
           action.spawn = splits "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
@@ -345,24 +354,24 @@ in
 
         "XF86AudioPrev" = {
           allow-when-locked = true;
-          action.spawn = "playerctl previous";
+          action.spawn = splits "playerctl previous";
         };
 
         "XF86AudioNext" = {
           allow-when-locked = true;
-          action.spawn = "playerctl next";
+          action.spawn = splits "playerctl next";
         };
         # Example brightness key mappings for brightnessctl.
         # You can use regular spawn with multiple arguments too (to avoid going through "sh"),
         # but you need to manually put each argument in separate "" quotes.
         "XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action.spawn = "brightnessctl --class=backlight set +10%";
+          action.spawn = splits "brightnessctl --class=backlight set +5%";
         };
 
         "XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn = "brightnessctl --class=backlight set -10%";
+          action.spawn = splits "brightnessctl --class=backlight set -5%";
         };
       };
 
@@ -379,7 +388,7 @@ in
         };
         warp-mouse-to-focus = {
           # 鼠标跳到focus窗口
-          enable = true;
+          enable = false;
           mode = "center-xy"; # 移动到中心窗口
         };
       };
@@ -480,6 +489,7 @@ in
             { app-id = "^zen$"; }
             { app-id = "^code$"; }
           ];
+          open-floating = false;
           default-column-width = {
             proportion = 1. / 1.;
           };
@@ -500,6 +510,12 @@ in
             proportion = 1. / 2.;
           };
         }
+        {
+          matches = [
+            { title = "wps"; }
+          ];
+          open-floating = true;
+        }
       ];
       layer-rules = [
         {
@@ -512,9 +528,28 @@ in
       gestures = {
         hot-corners.enable = false;
       };
-      spawn-at-startup = [ ];
+      spawn-at-startup = [
+        {
+          argv = [
+            "swayidle"
+            "-w"
+            "timeout"
+            "300"
+            "noctalia-shell ipc call lockScreen lock"
+            "timeout"
+            "600"
+            "systemctl suspend || loginctl suspend"
+            "before-sleep"
+            "noctalia-shell ipc call lockScreen lock"
+            "timeout"
+            "601"
+            "niri msg action power-off-monitors"
+          ];
+        }
+
+      ];
       hotkey-overlay = {
-        skip-at-startup = false;
+        skip-at-startup = true;
       };
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       overview = {
