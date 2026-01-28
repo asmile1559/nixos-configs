@@ -3,6 +3,7 @@
 {
   imports = [
     ./zen-browser.nix
+    ./docker.nix
   ];
 
   programs = {

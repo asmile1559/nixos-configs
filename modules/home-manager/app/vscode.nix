@@ -23,6 +23,8 @@
           ms-vscode.remote-explorer
           github.copilot
           github.copilot-chat
+          golang.go
+          mkhl.direnv
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -55,6 +57,9 @@
           };
         };
         editor.fontFamily = "'Maple Mono NL NF CN', 'Fira Code'";
+        files.autoSave = "afterDelay";
+        editor.formatOnSave = true;
+        window.restoreWindows = "none";
       };
     };
   };

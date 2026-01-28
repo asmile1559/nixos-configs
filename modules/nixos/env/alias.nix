@@ -2,6 +2,6 @@
 
 {
   environment.shellAliases = {
-    nsw = "sudo nixos-rebuild switch --show-trace";
+    nswitch = "sudo nixos-rebuild switch --show-trace";
   };
 }

@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ./app
     inputs.self.nixosModules
+    inputs.self.desktopModules.niri.nixos
   ];
 
   # Bootloader.
@@ -60,6 +61,10 @@
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.mutter]
+    experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
+  '';
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -97,9 +102,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
@@ -135,7 +138,7 @@
     nixfmt
     home-manager
 
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    fzf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,12 +1,15 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 
 {
   imports = [
     inputs.self.homeManagerModules
+    inputs.self.desktopModules.niri.home
     ./configs/dconf
+    ./app
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -14,7 +17,7 @@
   home.username = "box";
   home.homeDirectory = "/home/box";
   home.shellAliases = {
-    "hsw" = "home-manager switch --flake ~/.config/home-manager#box@minipc -b backup";
+    "hswitch" = "home-manager switch --flake ~/.config/home-manager#box@minipc -b backup";
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -45,6 +48,11 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.zotero
+    pkgs.heroic-unwrapped
+
+    pkgs.yazi
+    pkgs.bibata-cursors
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -79,11 +87,29 @@
   #  /etc/profiles/per-user/box/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
+  };
+
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    package = pkgs.bibata-cursors;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gnome
+    ]; # Fixes OpenURI and cursor theme in flatpaks
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
+  # xdg.configFile."niri/config.kdl".source = ./configs/niri/config.kdl;
 }
