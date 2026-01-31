@@ -15,3 +15,11 @@ To test your configuration simply run the following command
 ```
 nix run .
 ```
+
+## Install NixVim
+
+To install NixVim in machine, run the following command
+
+```bash
+nix profile install .
+```

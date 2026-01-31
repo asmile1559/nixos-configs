@@ -53,6 +53,7 @@
 
     pkgs.yazi
     pkgs.bibata-cursors
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

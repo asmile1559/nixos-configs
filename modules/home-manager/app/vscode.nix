@@ -25,6 +25,11 @@
           github.copilot-chat
           golang.go
           mkhl.direnv
+          vadimcn.vscode-lldb
+          tamasfe.even-better-toml
+          gruntfuggly.todo-tree
+          fill-labs.dependi
+          vscodevim.vim
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {

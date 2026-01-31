@@ -486,28 +486,12 @@ in
         }
         {
           matches = [
-            { app-id = "^zen$"; }
-            { app-id = "^code$"; }
+            { app-id = "zen"; }
+            { app-id = "code"; }
           ];
           open-floating = false;
           default-column-width = {
             proportion = 1. / 1.;
-          };
-        }
-        {
-          matches = [
-            { app-id = "wechat"; }
-            { app-id = "feishu"; }
-            { app-id = "qq"; }
-            { app-id = "qqmusic"; }
-          ];
-          open-floating = true;
-          open-focused = true;
-          default-column-width = {
-            proportion = 1. / 2.;
-          };
-          default-window-height = {
-            proportion = 1. / 2.;
           };
         }
         {
