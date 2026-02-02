@@ -47,6 +47,8 @@
 
       desktopModules = import ./desktop;
 
+      virtualisationModules = import ./modules/virtualisation;
+
       nixosConfigurations = {
         wow = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };

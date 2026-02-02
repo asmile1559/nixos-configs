@@ -16,6 +16,7 @@
     ./app
     inputs.self.nixosModules
     inputs.self.desktopModules.niri.nixos
+    inputs.self.virtualisationModules.nixos
   ];
 
   # Bootloader.
@@ -101,6 +102,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
     ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;

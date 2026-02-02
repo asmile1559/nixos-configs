@@ -49,6 +49,7 @@
         "[nix]".editor.tabSize = 2;
         "[kdl]".editor.tabSize = 2;
         "[json]".editor.tabSize = 2;
+        "[html]".editor.tabSize = 2;
         workbench.colorTheme = "GitHub Dark";
         workbench.iconTheme = "catppuccin-mocha";
 
